@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:24:43 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 15:52:48 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/01 16:02:04 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_token_word	*split_node_word(char *str)
 		new_word = new_node_word(word[i]);
 		if (!new_word)
 			exit(1);
+		fill_expand(new_word);
 		add_back_word(&head_word, new_word);
 		i++;
 	}	
@@ -64,21 +65,15 @@ t_token	*new_node(t_token_word *word)
 
 void	fill_expand(t_token_word *token)
 {
-	t_token_word	*tmp;
 	char			*str;
 
-	tmp = token;
-	while (tmp)
+	if (token->word[0] == '\'')
+		token->expendable = 0;
+	if (token->word[0] == '\'' || token->word[0] == '\"')
 	{
-		if (tmp->word[0] == '\'')
-			tmp->expendable = 0;
-		if (tmp->word[0] == '\'' || tmp->word[0] == '\"')
-		{
-			str = delete_quote(tmp->word);
-			free(tmp->word);
-			tmp->word = str;
-		}
-		tmp = tmp->next;
+		str = delete_quote(token->word);
+		free(token->word);
+		token->word = str;
 	}
 }
 

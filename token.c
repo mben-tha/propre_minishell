@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:53:16 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 15:38:25 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/01 16:03:40 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	tokenize_line(t_token **token, char *str)
 		else
 		{
 			new_word = split_node_word(res[i]);
-			fill_expand(new_word);
 			new = new_node(new_word);
 		}
 		if (!new)
