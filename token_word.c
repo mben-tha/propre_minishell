@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:24:43 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 16:02:04 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/01 17:19:45 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_token_word	*split_node_word(char *str)
 		new_word = new_node_word(word[i]);
 		if (!new_word)
 			exit(1);
-		fill_expand(new_word);
+		fill_expandable(new_word);
 		add_back_word(&head_word, new_word);
 		i++;
 	}	
@@ -63,9 +63,9 @@ t_token	*new_node(t_token_word *word)
 	return (new);
 }
 
-void	fill_expand(t_token_word *token)
+void	fill_expandable(t_token_word *token)
 {
-	char			*str;
+	char	*str;
 
 	if (token->word[0] == '\'')
 		token->expendable = 0;

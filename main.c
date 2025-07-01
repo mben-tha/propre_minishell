@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:53:09 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 15:17:50 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/01 17:46:35 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ void	sig_handler(int sig)
 }
 
 
-int main(int ac, char **av)
+int main(int ac, char **av, char **envp)
 {
 	char	*input;
 	char	*str;
 	t_token	*head;
-
+	char	**cpy_env;
+	
+	cpy_env = ft_cpy_envp(envp);
 	head = NULL;
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, SIG_IGN);
