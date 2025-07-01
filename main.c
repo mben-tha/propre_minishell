@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:53:09 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 13:50:32 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/01 15:17:50 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(int ac, char **av)
 		else
 		{
 			str = clean_space(input);
-			// printf("%s\n", str);
+			printf("%s\n", str);
 			// char	**res = ft_split(str);
 			// while (*res)
 			// 	printf("(%s)\n", *res++);

@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:53:16 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 13:51:34 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/01 15:17:04 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_token_word	*split_node_word(char *str)
 
 	head_word = NULL;
 	i = 0;
-	word = ft_split(str);
+	word = ft_split_word(str);
 	if (!word)
 		return (NULL);
 	while (word[i])

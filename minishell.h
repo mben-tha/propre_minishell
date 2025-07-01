@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 11:58:49 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 13:44:52 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/01 15:16:04 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ int		ft_len_word(char const *s);
 char	*ft_mall(char const *s);
 int		fr(char **result, int i);
 char	**ft_split(char const *s);
+
+// split_word
+char	**ft_split_word(char const *s);
+char	*ft_mall_word(char const *s);
+int	ft_len_word_word(char const *s);
+int	ft_countwords_word(const char *s);
 
 int		quote_not_closed(char *str);
 char    *clean_space(char *str);
