@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 11:58:49 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 15:16:04 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/01 15:53:05 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	add_back_word(t_token_word **token, t_token_word *new);
 int		operator(char *word);
 void	ft_free_token(t_token **stack);
 void	free_split(char **tab);
+void	fill_expand(t_token_word *token);
+char	*delete_quote(char *str);
 
 int		ft_countwords(char const *s);
 int		ft_len_word(char const *s);
