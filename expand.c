@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 16:06:51 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/02 16:39:19 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:54:47 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,10 @@ void	expand(t_token_word *token, char **env)
 	char	*res;
 	char	*var_name;
 	char	*var;
-	char	*buff;
 	char	one_char[2];
 
 	i = 0;
-	res = NULL;
-	buff = ft_strdup("");
+	res = ft_strdup("");
 	if (token->expendable)
 	{
 		while (token->word[i])
@@ -76,19 +74,14 @@ void	expand(t_token_word *token, char **env)
 					free(var_name);
 					res = ft_strjoin(res, var);
 				}
-				if (token->word[i] == ' ')
-				{
-					res = ft_strjoin(res, " ");
-					i++;
-				}
 			}
 			else
 			{
 				one_char[0] = token->word[i];
 				one_char[1] = '\0';
 				res = ft_strjoin(res, one_char);
+				i++;
 			}
-			i++;
 		}
 		free(token->word);
 		token->word = res;
