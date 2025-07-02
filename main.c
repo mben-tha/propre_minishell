@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:53:09 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 17:46:35 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:02:25 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int main(int ac, char **av, char **envp)
 			// while (*res)
 			// 	printf("(%s)\n", *res++);
 			free(input);
-			tokenize_line(&head, str);
+			tokenize_line(&head, str, cpy_env);
 			print_tokens(head);
 			ft_free_token(&head);
 			free(str);
@@ -79,7 +79,7 @@ void print_tokens(t_token *token)
 		t_token_word *word = token->word;
 		while (word)
 		{
-			printf("  Word: %s (expendable: %d)\n", word->word, word->expendable);
+			printf("  Word: [%s] (expendable: %d)\n", word->word, word->expendable);
 			word = word->next;
 		}
 		token = token->next;

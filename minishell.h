@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 11:58:49 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 17:39:51 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:14:11 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct s_token
 
 void	sig_handler(int sig);
 
-void	tokenize_line(t_token **token, char *line);
-t_token_word	*split_node_word(char *str);
+void	tokenize_line(t_token **token, char *line, char **env);
+t_token_word	*split_node_word(char *str, char **env);
 t_token	*new_node_operator(char *word);
 t_token_word	*new_node_word(char *str);
 t_token	*new_node(t_token_word *word);
@@ -79,6 +79,13 @@ int		is_operator(char c);
 
 char	**ft_cpy_envp(char **envp);
 char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char *s1, char const *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_isalnum(int c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*get_env_value(char *var_name, char **env);
+int		is_valid_var_char(char c);
+void	expand(t_token_word *token, char **env);
 
 void	print(t_token *stack);
 void print_tokens(t_token *token);

@@ -6,13 +6,13 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:53:16 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 16:03:40 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:03:17 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	tokenize_line(t_token **token, char *str)
+void	tokenize_line(t_token **token, char *str, char **env)
 {
 	char			**res;
 	int				i;
@@ -30,7 +30,7 @@ void	tokenize_line(t_token **token, char *str)
 			new = new_node_operator(res[i]);
 		else
 		{
-			new_word = split_node_word(res[i]);
+			new_word = split_node_word(res[i], env);
 			new = new_node(new_word);
 		}
 		if (!new)

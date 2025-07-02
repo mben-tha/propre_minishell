@@ -6,13 +6,13 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:24:43 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 17:19:45 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:03:09 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token_word	*split_node_word(char *str)
+t_token_word	*split_node_word(char *str, char **env)
 {
 	char			**word;
 	int				i;
@@ -30,6 +30,8 @@ t_token_word	*split_node_word(char *str)
 		if (!new_word)
 			exit(1);
 		fill_expandable(new_word);
+		expand(new_word, env);
+		// printf("expanddddddd %s\n", new_word->word);
 		add_back_word(&head_word, new_word);
 		i++;
 	}	

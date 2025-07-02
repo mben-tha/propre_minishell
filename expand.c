@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 16:06:51 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/01 17:38:49 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:39:19 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,75 @@ char	**ft_cpy_envp(char **envp)
 	return (cpy);
 }
 
-
-char	*ft_strdup(const char *s1)
+void	expand(t_token_word *token, char **env)
 {
 	int		i;
-	int		len_dest;
-	char	*dest;
+	int		start;
+	char	*res;
+	char	*var_name;
+	char	*var;
+	char	*buff;
+	char	one_char[2];
 
 	i = 0;
-	len_dest = ft_strlen(s1);
-	dest = malloc((len_dest + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	while (s1[i])
+	res = NULL;
+	buff = ft_strdup("");
+	if (token->expendable)
 	{
-		dest[i] = s1[i];
-		i++;
+		while (token->word[i])
+		{
+			if (token->word[i] == '$')
+			{
+				if (!is_valid_var_char(token->word[i + 1]))
+				{
+					res = ft_strjoin(res, "$");
+					i++;
+				}
+				else
+				{
+					i++;
+					start = i;
+					while (is_valid_var_char(token->word[i]))
+						i++;
+					var_name = ft_substr(token->word, start, (i - start));
+					var = get_env_value(var_name, env);
+					free(var_name);
+					res = ft_strjoin(res, var);
+				}
+				if (token->word[i] == ' ')
+				{
+					res = ft_strjoin(res, " ");
+					i++;
+				}
+			}
+			else
+			{
+				one_char[0] = token->word[i];
+				one_char[1] = '\0';
+				res = ft_strjoin(res, one_char);
+			}
+			i++;
+		}
+		free(token->word);
+		token->word = res;
 	}
-	dest[i] = '\0';
-	return (dest);
 }
 
-// char	*expand(char *str)
-// {
-	
-// }
+char *get_env_value(char *var_name, char **env)
+{
+    int i = 0;
+    int len = ft_strlen(var_name);
+    while (env[i])
+    {
+        if (!ft_strncmp(env[i], var_name, len) && env[i][len] == '=')
+            return (env[i] + len + 1);
+        i++;
+    }
+    return ("");
+}
+
+
+int	is_valid_var_char(char c)
+{
+	return (ft_isalnum(c) || c == '_');
+}
