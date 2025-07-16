@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:53:09 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/02 16:02:25 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/16 13:10:31 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,18 @@ int main(int ac, char **av, char **envp)
 			// 	printf("(%s)\n", *res++);
 			free(input);
 			tokenize_line(&head, str, cpy_env);
-			print_tokens(head);
+			if (!check_syntax(head))
+			{
+				t_commande *commands = convert_tokens_to_command(head);
+
+				if (commands)
+				{
+					print_commande(commands);
+					// une fois terminé
+					free_commande(commands);
+				}
+			}
+				// print_tokens(head);
 			ft_free_token(&head);
 			free(str);
 		}

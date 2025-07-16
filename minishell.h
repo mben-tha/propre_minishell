@@ -6,7 +6,7 @@
 /*   By: mehdi <mehdi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 11:58:49 by mehdi             #+#    #+#             */
-/*   Updated: 2025/07/02 16:14:11 by mehdi            ###   ########.fr       */
+/*   Updated: 2025/07/12 12:47:54 by mehdi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,22 @@ typedef struct s_token
 	t_token_type	type;
 	struct s_token	*next;
 }	t_token;
+
+typedef struct s_redirection
+{
+	t_token_type			type;
+	char					*file;
+	int						fd;
+	struct s_redirection	*next;
+}	t_redirection;
+
+typedef struct s_commande
+{
+	char				**args;
+	t_redirection		*redirection;
+	struct s_commande	*next;
+}	t_commande;
+
 
 void	sig_handler(int sig);
 
@@ -89,5 +105,21 @@ void	expand(t_token_word *token, char **env);
 
 void	print(t_token *stack);
 void print_tokens(t_token *token);
+
+int	check_syntax(t_token *tokens);
+int	is_redirection(t_token_type type);
+int	is_word(t_token *token);
+
+int	count_words(t_token_word *word);
+char	*join_token_words(t_token_word *word);
+t_redirection *add_redirection(t_redirection **redir_list, t_token_type type, t_token_word *word);
+char **append_arg(char **args, t_token_word *word);
+t_commande	*convert_tokens_to_command(t_token *tokens);
+
+void	free_args(char **args);
+void	free_redirection(t_redirection *redir);
+void	free_commande(t_commande *cmd);
+void	print_redirection(t_redirection *redir);
+void	print_commande(t_commande *cmd_list);
 
 #endif
